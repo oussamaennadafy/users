@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useRef } from "react";
 import classes from "./Overlay.module.css";
 
-function Overlay({ display, hideOverlay, message }) {
+function Overlay({ display, hideOverlay, title, message }) {
+  const sectionRef = useRef();
+  const buttonRef = useRef();
+  const handleClick = (e) => {
+    if (e.target === sectionRef.current || e.target === buttonRef.current)
+      hideOverlay();
+  };
   return (
     display && (
-      <section className={classes.container}>
+      <section
+        ref={sectionRef}
+        onClick={handleClick}
+        className={classes.container}
+      >
         <div className={classes.card}>
-          <div className={classes.card_title}>Invalid input</div>
+          <div className={classes.card_title}>{title}</div>
           <div className={classes.card_body}>
             <p className={classes.card_message}>{message}</p>
-            <button
-              className={classes.button}
-              onClick={() => hideOverlay(false)}
-            >
+            <button ref={buttonRef} className={classes.button}>
               Okey
             </button>
           </div>

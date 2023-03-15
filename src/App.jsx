@@ -9,14 +9,16 @@ function App() {
   const [users, setUsers] = useState([]);
   const [overlay, setOverlay] = useState({
     display: false,
+    title: "",
     message: "",
   });
-  const displayOverlay = (message) => {
-    setOverlay({ display: true, message });
+  const displayOverlay = (title, message) => {
+    setOverlay({ display: true, title, message });
   };
   const hideOverlay = () => {
     setOverlay({
       display: false,
+      title: "",
       message: "",
     });
   };
@@ -25,6 +27,7 @@ function App() {
       <AddUser displayOverlay={displayOverlay} setUsers={setUsers} />
       <ListUsers users={users} />
       <Overlay
+        title={overlay.title}
         message={overlay.message}
         hideOverlay={hideOverlay}
         display={overlay.display}
