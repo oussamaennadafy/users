@@ -31,12 +31,20 @@
 .card_body {
   padding: 1rem;
   color: black;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 .card_message {
   padding: 2rem 0rem 4rem 0rem;
 }
 
-.card_message {
+.button {
+  padding: 0.8rem 1.2rem;
+  color: white;
   margin-left: auto;
+  cursor: pointer;
+  background-color: var(--main-color);
+  border: 1px gray solid;
 }

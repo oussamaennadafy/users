@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import classes from "./AddUser.module.css";
 
-function AddUser({ setUsers }) {
+function AddUser({ setUsers, displayOverlay }) {
   const [userData, setUserData] = useState({
     userName: "",
     age: "",
@@ -30,7 +30,7 @@ function AddUser({ setUsers }) {
         return [userData, ...prevUsers];
       });
     } catch (err) {
-      console.log(err.message);
+      displayOverlay(err.message);
     }
   };
 
