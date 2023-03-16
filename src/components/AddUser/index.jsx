@@ -16,17 +16,14 @@ function AddUser({ setUsers, displayOverlay }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let titleOfError;
     try {
       /* validate form */
       if (!userData.userName.trim()) {
-        titleOfError = "invalid name";
-        throw new Error("please add a name");
+        throw new Error("please add a name", { cause: "invalid name" });
       }
       const age = Number(userData.age);
       if (age <= 0 || age >= 99) {
-        titleOfError = "invalid age";
-        throw new Error("please add a valid age");
+        throw new Error("please add a valid age", { cause: "invalid age" });
       }
       /* set users */
       setUsers((prevUsers) => {
@@ -38,7 +35,7 @@ function AddUser({ setUsers, displayOverlay }) {
         age: "",
       });
     } catch (err) {
-      displayOverlay(titleOfError, err.message);
+      displayOverlay(err.cause, err.message);
     }
   };
 
